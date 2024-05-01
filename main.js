@@ -100,7 +100,7 @@ function eliminarProducto(nombreProductoAEliminar){
     for( i = 0 ; i < productos.length ; i++){
         if(convertirAMinuscula(productos[i].nombre) == convertirAMinuscula(nombreProductoAEliminar)){
             const nombreProductorEliminado = productos[i].nombre;
-            productos.splice(productos[i],1);
+            productos.splice(i,1);
             console.log("Se elimino el producto " + nombreProductorEliminado);
             break;
         }
