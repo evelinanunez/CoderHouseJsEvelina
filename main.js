@@ -95,11 +95,14 @@ function editarProducto(propiedadParaEditar, nombreProductoAEditar){
   }
 }
 
+
 function eliminarProducto(nombreProductoAEliminar){
     for( i = 0 ; i < productos.length ; i++){
         if(convertirAMinuscula(productos[i].nombre) == convertirAMinuscula(nombreProductoAEliminar)){
-            console.log("Se elimino el siguiente producto:  Nombre producto: " + productos[i].nombre + ", Categoria producto: " + productos[i].categoria +
-        ", Descripción producto: " + productos[i].descripcion + ", Precio: " + productos[i].precio )
+            const nombreProductorEliminado = productos[i].nombre;
+            productos.splice(productos[i],1);
+            console.log("Se elimino el producto " + nombreProductorEliminado);
+            break;
         }
     }
 }
