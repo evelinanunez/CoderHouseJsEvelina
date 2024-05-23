@@ -1,3 +1,75 @@
-html, body, main {
-    height: 100%;
-  }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.escritorio{
+  display: none;
+}
+
+.encabezado{
+  background-color: #fdfd96;
+  width: 100vw;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+.titulo {
+  text-align: center;
+  font-size: 3rem;
+}
+
+
+
+.formularioAgregarProducto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 2rem;
+}
+
+.formularioAgregarProducto label {
+  width: 100%;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+.formularioAgregarProducto input {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.estilosContenedor{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding-bottom: 2em;
+}
+
+  @media(min-width:768px){
+
+
+    .encabezado{
+        display: none;
+    }
+    .app{
+        display: none;
+    }
+}  
