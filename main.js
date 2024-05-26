@@ -1,6 +1,8 @@
 /*
 Tema elegido, tienda de e-commerce de venta de cactus y articulos
-varios de jardineria.
+varios de jardineria, por el momento se realizo el listar productos,
+crear producto, buscar producto en donde se aplicaron los contenidos
+vistos hasta el momento. 
 */
 
 let productos = [
@@ -25,106 +27,9 @@ let productos = [
 
 ];
 
-/* function convertirAMinuscula(texto){
-    return texto.toLocaleLowerCase();
-} */
-
-/* function agregarProducto(categoria, nombre, descripcion, precio){
-    const producto = {
-        categoria : categoria,
-        nombre: nombre,
-        descripcion : descripcion,
-        precio : precio
-    }
-    productos.push(producto);
-} */
-
-/* function editarProducto(propiedadParaEditar, nombreProductoAEditar){
-  for(i = 0; i < productos.length ; i++){
-    if(convertirAMinuscula(productos[i].nombre) == convertirAMinuscula(nombreProductoAEditar)){
-        let continuarEditando = confirm("Quiere continuar con la edición de datos de un producto? ");
-        while(continuarEditando){
-            switch (propiedadParaEditar) {
-                    case "categoria":
-                        const categoriaProductoAnterior = productos[i].categoria;
-                        const nuevaCategoriaProducto = prompt("Ingrese un nuevo valor para la Categoria: ");
-                        productos[i].categoria = nuevaCategoriaProducto;
-                        console.log("Se modifico correctamente la categoria :  "+ categoriaProductoAnterior + " por la categoria : " + nuevaCategoriaProducto + " .");
-                        continuarEditando = confirm("Quiere continuar con la edición de datos de un producto? ");
-                        if(continuarEditando){
-                            propiedadParaEditar = convertirAMinuscula(prompt("Seleccione que dato quiere modificar? categoria, nombre, descripcion, precio."));
-                        }
-                        break;
-                    case "nombre":
-                        const nombreProductoAnterior = productos[i].nombre;
-                        const nuevoNombreProducto = prompt("Ingrese un nuevo valor para el nombre: ");
-                        productos[i].nombre = nuevoNombreProducto;
-                        console.log("Se modifico correctamente el nombre :  "+ nombreProductoAnterior + " por el nombre : " + nuevoNombreProducto + " .");
-                        continuarEditando = confirm("Quiere continuar con la edición de datos de un producto? ");
-                        if(continuarEditando){
-                            propiedadParaEditar = convertirAMinuscula(prompt("Seleccione que dato quiere modificar? categoria, nombre, descripcion, precio."));
-                        }
-                        break;
-                    case "descripcion":
-                        const descripcionProductoAnterior = productos[i].descripcion;
-                        const nuevoDesripcionProducto = prompt("Ingrese un nuevo valor para la descripcion: ");
-                        productos[i].descripcion = nuevoDesripcionProducto;
-                        console.log("Se modifico correctamente el nombre :  "+ descripcionProductoAnterior + " por la descripcion : " + nuevoDesripcionProducto + " .");
-                        continuarEditando = confirm("Quiere continuar con la edición de datos de un producto? ");
-                        if(continuarEditando){
-                            propiedadParaEditar = convertirAMinuscula(prompt("Seleccione que dato quiere modificar? categoria, nombre, descripcion, precio."));
-                        }
-                        break; 
-                    case "precio":
-                        const precioProductoAnterior =  productos[i].precio;
-                        const nuevoPrecioProducto = prompt("Ingrese un nuevo valor para el precio: ");
-                        productos[i].precio = nuevoPrecioProducto;
-                        console.log("Se modifico correctamente el nombre :  "+ precioProductoAnterior + " por el precio : " + nuevoPrecioProducto + " .");
-                        continuarEditando = confirm("Quiere continuar con la edición de datos de un producto? ");
-                        if(continuarEditando){
-                            propiedadParaEditar = convertirAMinuscula(prompt("Seleccione que dato quiere modificar? categoria, nombre, descripcion, precio."));
-                        }
-                        break;               
-                    default:
-                        break;
-               }
-        }
-        
-    }
-
-  }
-} */
-
-/* function eliminarProducto(nombreProductoAEliminar){
-    for( i = 0 ; i < productos.length ; i++){
-        if(convertirAMinuscula(productos[i].nombre) == convertirAMinuscula(nombreProductoAEliminar)){
-            const nombreProductorEliminado = productos[i].nombre;
-            productos.splice(i,1);
-            console.log(i);
-            console.log("Se elimino el producto " + nombreProductorEliminado);
-            break;
-        }
-    }
-} */
-
-/* function verProducto(nombreProductoAMostrar){
-    for( i = 0 ; i < productos.length ; i++){
-        if(convertirAMinuscula(productos[i].nombre) == convertirAMinuscula(nombreProductoAMostrar)){
-            console.log("Los datos del producto " + nombreProductoAMostrar+ " son los siguientes:  Nombre producto: " + productos[i].nombre + ", Categoria producto: " + productos[i].categoria +
-        ", Descripción producto: " + productos[i].descripcion + ", Precio: " + productos[i].precio )
-        }
-    }
-} */
-
-/* function verProductos(){
-    for (const producto of productos) {
-        console.log("Los datos del producto son los siguientes:  Nombre producto: " + producto.nombre + ", Categoria producto: " + producto.categoria +
-        ", Descripción producto: " + producto.descripcion+ ", Precio: " + producto.precio );
-    }
-} */    
 
 localStorage.setItem("productos",JSON.stringify(productos));
-productos = JSON.parse(localStorage.getItem("productos")) || [];
+productos = JSON.parse(localStorage.getItem("productos")) || [] ; 
 
 const agregarProducto = (categoriaProducto,nombreProducto,precioProducto,imagenProducto,)=>{
     const producto = {
@@ -133,14 +38,13 @@ const agregarProducto = (categoriaProducto,nombreProducto,precioProducto,imagenP
         imagenProducto,
         precioProducto
     }
-    console.log(producto);
     productos.push(producto);
     localStorage.setItem("productos", JSON.stringify(productos));
     return producto;
 }
 
 const crearCard = (producto)=>{
-    const app = document.getElementById("app");
+    const app = document.getElementById("contenidoPagina");
     const element = document.createElement("div");
     element.className = "estilosContenedor"
     element.innerHTML = `
@@ -150,28 +54,124 @@ const crearCard = (producto)=>{
                                 <h2 class="card-title">${producto.nombreProducto}</h2>
                                 <h3>Categoria:  ${producto.categoriaProducto}</h3>
                                 <h3> $ ${producto.precioProducto}</h3>
-                                <button type="button" class="btn btn-dark">Editar</button>
-                                <button type="button" class="btn btn-dark" id="btnAgregarProducto">Eliminar</button>
                             </div>
                         </div>
                         `
     app.append(element)
 }
-const main = () =>{
-    productos.forEach((producto)=>{
+
+const crearCardMensaje = (mensaje)=>{
+    const app = document.getElementById("contenidoPagina");
+    app.innerHTML = '';
+    const element = document.createElement("div");
+    element.className = "estilosContenedor"
+    element.innerHTML = `
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h2 class="card-title">No se encontro el producto ${mensaje.value}</h2>
+                            </div>
+                        </div>
+                        `
+    app.append(element)
+}
+
+
+const mostrarProductos = (productos) => {
+    const app = document.getElementById("contenidoPagina");
+    app.innerHTML = '';
+
+    productos.forEach((producto) => {
         crearCard(producto);
+    });
+}
+
+const main = () =>{
+  
+    
+    const botones = document.getElementById("botonera");
+    botones.className = "estilosCentrado";
+
+    const listarProductos = document.getElementById("listarProductos");
+    listarProductos.addEventListener("click",()=>{
+        mostrarProductos(productos)
+    }) 
+     
+    const app = document.getElementById("contenidoPagina");
+    const element = document.createElement("div");
+    element.className = "estilosCentrado";
+    element.innerHTML = `
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h2 class="card-title">Se aplicaron los siguientes contenidos: </h2>
+                                <ul>
+                                <li>Tipos de datos numericos, bolleanos, objetos, etc.</li>
+                                <li>variables cost y let.</li>
+                                <li>Ciclos Foreach</li>
+                                <li>Condicionales if else</li>
+                                <li>Se utilizó el paradigma funcional</li>
+                                <li>Se utilizó array</li>
+                                <li>Métodos de busqueda como filter</li>
+                                <li>Se manipulo el DOM con getElementById, createElemet, innerText, append, value, className</li>
+                                <li>LocalStorage</li>
+                                <li>Evento click</li>
+                                </ul>
+                            </div>
+                        </div>
+                        `
+    app.append(element)
+
+    
+    /**Se utiliza ClassName para mostrar y ocultar el input para buscar Producto */
+    const mostrarInputFiltrado = document.getElementById("btnFiltrarProducto");
+    const busquedaProducto = document.getElementById("inputBusqueda");
+    busquedaProducto.className= "ocultar";
+    mostrarInputFiltrado.addEventListener("click", ()=>{
+        mostrarProductos(productos);
+        if(mostrarInputFiltrado.value == "Buscar Producto"){
+            busquedaProducto.className = "mostrar";
+            busquedaProducto.className = "estilosCentrado";
+            mostrarInputFiltrado.innerText = "Cerrar boton busqueda";
+            mostrarInputFiltrado.value=  "Cerrar boton busqueda";
+        }else{
+            busquedaProducto.className ="ocultar";
+            mostrarInputFiltrado.innerText = "Buscar Producto";
+            mostrarInputFiltrado.value=  "Buscar Producto";
+            const app = document.getElementById("contenidoPagina");
+            app.innerHTML = '';
+        }
     })
+
+    const botonBuscarProducto = document.getElementById("btnBuscar");
+    
+    botonBuscarProducto.addEventListener("click", ()=>{
+        busquedaProducto.className= "ocultar";
+        mostrarInputFiltrado.innerText = "Buscar Producto";
+        mostrarInputFiltrado.value=  "Buscar Producto";
+        const valorBuscado = document.getElementById("textoABuscar");
+        let valoresEncontrados = productos.filter((valor) => valor.categoriaProducto.includes(valorBuscado.value) || valor.nombreProducto.includes(valorBuscado.value));
+
+        if(valoresEncontrados.length > 0){
+           mostrarProductos(valoresEncontrados);
+        }else{
+            crearCardMensaje(valorBuscado)
+        }
+      
+    })
+
+
     /**Se utiliza ClassName para mostrar y ocultar formulario de agregar Producto */
     const mostrarFormularioAgregarProducto = document.getElementById("mostrarFomulario");
     const formularioAgregar = document.getElementById("formularioAgregar");
-    formularioAgregar.className= "ocultarFormulario";
+    formularioAgregar.className= "ocultar";
     mostrarFormularioAgregarProducto.addEventListener("click", ()=>{
+        const app = document.getElementById("contenidoPagina");
+        app.innerHTML = '';
         if(mostrarFormularioAgregarProducto.value == "Agregar Producto"){
             formularioAgregar.className= "formularioAgregarProducto";
             mostrarFormularioAgregarProducto.innerText ="Cerrar Formulario";
             mostrarFormularioAgregarProducto.value="Cerrar Formulario";
         } else{
-            formularioAgregar.className="ocultarFormulario";
+            formularioAgregar.className="ocultar";
             mostrarFormularioAgregarProducto.innerText ="Agregar Producto";
             mostrarFormularioAgregarProducto.value="Agregar Producto"
         }
@@ -182,48 +182,20 @@ const main = () =>{
     /**Se ejecuta cuando presionar el boton agregar producto del formulario agregar */
     const botonAgregarProducto = document.getElementById("btnAgregarProducto");
     botonAgregarProducto.addEventListener("click" ,()=>{
+        formularioAgregar.className ="ocultar";
+        mostrarFormularioAgregarProducto.innerText ="Agregar Producto";
         const categoriaDelProducto = document.getElementById("categoriaProducto");
         const nombreDelProducto = document.getElementById("nombreProducto");
         const precioDelProducto = document.getElementById("precioProducto");
         const imagenDelProducto = document.getElementById("imagenProducto");
-        const nuevoProducto = agregarProducto(categoriaDelProducto.value,nombreDelProducto.value,precioDelProducto.value, imagenDelProducto.value);
-        formularioAgregar.className ="ocultarFormulario";
-        mostrarFormularioAgregarProducto.innerText ="Agregar Producto";
-        crearCard(nuevoProducto);
+        const productoNuevo= agregarProducto(categoriaDelProducto.value,nombreDelProducto.value,precioDelProducto.value, imagenDelProducto.value);
+        crearCard(productoNuevo);
         categoriaDelProducto.value ='';
         nombreDelProducto.value ='';
         precioDelProducto.value= 0;
 
     })
 
-
- /*    let continuar = confirm("Presione Aceptar para Iniciar/continuar o Cancelar para Finalizar la aplicación.");
-    while(continuar){
-    const accionARealizar = prompt("¡Bienvenido! Seleccione alguna de las siguientes acciones: agregar, editar, eliminar, producto, todosProductos ");
-        if(convertirAMinuscula(accionARealizar) == "agregar"){
-            const categoriaProducto = prompt("Ingrese la categoría del producto.");
-            const nombreProducto = prompt("Ingrese nombre del producto.");
-            const descripcionProducto = prompt("Ingrese una descripción para el producto.");
-            const precio = parseFloat(prompt("Ingrese un precio para el producto."));
-            agregarProducto(categoriaProducto,nombreProducto,descripcionProducto,precio);
-            alert("Se agrego el siguiente producto: Categoria: " + categoriaProducto + ", Nombre Producto: " + nombreProducto + ".")
-        }else if(convertirAMinuscula(accionARealizar) == "editar"){
-            const nombreProductoAEditar = prompt("Ingrese el nombre del producto a editar: ");
-            const propiedadAEditar = prompt("Seleccione que dato quiere modificar? categoria, nombre, descripcion, precio.");
-            editarProducto(propiedadAEditar,nombreProductoAEditar);
-        }else if(convertirAMinuscula(accionARealizar) == "eliminar"){
-            const productoAEliminar = prompt("Ingrese el nombre del producto a eliminar: ");
-            eliminarProducto(productoAEliminar);
-        }else if(convertirAMinuscula(accionARealizar) == "producto"){
-            const productoAMostrar = prompt("Ingrese el nombre del producto a mostrar: ");
-            verProducto(productoAMostrar);
-        }else if(accionARealizar == "todosProductos"){
-            verProductos();
-        }else{
-            alert("Accion no valida")
-        }
-       continuar = confirm("Presione Aceptar para Iniciar/continuar o Cancelar para Finalizar la aplicación.");
-    } */
 }
 
 main();

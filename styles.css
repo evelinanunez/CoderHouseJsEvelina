@@ -23,9 +23,23 @@
   font-size: 3rem;
 }
 
-.ocultarFormulario{
+.estilosCentrado{
+  display: flex;
+  text-align: start;
+  padding-bottom: 2rem;
+  justify-content:space-around;
+}
+.estilosCentrado button{
+  padding: 0.5rem;
+}
+.ocultar{
   display: none;
 }
+
+.mostrar{
+  display: flex;
+}
+
 
 .formularioAgregarProducto {
   display: flex;

@@ -12,9 +12,14 @@
         <h1 class="titulo">Mundo cactus</h1>
     </header>
     <main id="app" class="app">
-        <div>
+        <div id="botonera">
+            <button class="btn btn-dark" id="listarProductos">Listar productos</button>
             <button class="btn btn-dark" id="mostrarFomulario" value="Agregar Producto">Agregar Producto</button>
-            <button class="btn btn-dark" id="btnFiltrarProducto">Buscar Producto</button>
+            <button class="btn btn-dark" id="btnFiltrarProducto" value="Buscar Producto">Buscar Producto</button>
+        </div>
+        <div id="inputBusqueda">
+            <input type="text" id="textoABuscar">
+            <button class="btn btn-dark" id="btnBuscar">Buscar</button>
         </div>
         <div id="formularioAgregar">
             <label for="categoriaProducto">Categoria producto: </label>
@@ -28,41 +33,15 @@
 
             <label for="imagenProducto">Ingrese una imagen</label>
             <input type="text" placeholder="ingrese ruta imagen" id="imagenProducto" value="./img/cactus.png" disabled>
-            <button class="btn btn-dark" id="btnAgregarProducto">Agregar Producto</button>
+            <button class="btn btn-dark" id="btnAgregarProducto">Agregar</button>
         </div>
-<!--         <div class="tarjeta">
-            <input type="text" id="nombreNuevaTarea" class="input" placeholder="Agregar nombre de la tarea">
-            <textarea class="input" id="contenidoNuevaTarea" placeholder="Agregar contenido de la tarea"></textarea>
-            <button class="btn" id="btnAgregarTarea">Agregar tarea</button>
-        </div> -->
+        <div id="contenidoPagina">
+
+        </div>
     </main>
     <div class="escritorio">
         <p>La aplicacion es visible en dispositivos moviles</p>
     </div>
-<!--     <main class="d-flex align-items-center">
-        <div class="container">
-            <h1 class="text-center">Pre-Entrega Nuñez Evelina</h1>
-                <p>El proyecto a realizar se va a tratar de una tienda de e-commerce de venta de cactus-suculentas y articulos varios del jardin.</p>
-                <p>Se crearon las funciones basicas CRUD</p>
-                    <ul>
-                        <li>
-                            <p>Agregar Producto</p>
-                        </li>
-                        <li>
-                            <p>Editar Producto</p>
-                        </li>
-                        <li>
-                            <p>Eliminar Producto</p>
-                        </li>
-                        <li>
-                            <p>Ver producto</p>
-                        </li>
-                        <li>
-                            <p>Ver Productos</p>
-                        </li>
-                    </ul>
-        </div>
-    </maincla> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="main.js"></script>
 </body>
