@@ -23,7 +23,9 @@
   font-size: 3rem;
 }
 
-
+.ocultarFormulario{
+  display: none;
+}
 
 .formularioAgregarProducto {
   display: flex;

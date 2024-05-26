@@ -12,7 +12,11 @@
         <h1 class="titulo">Mundo cactus</h1>
     </header>
     <main id="app" class="app">
-        <div class="formularioAgregarProducto" id="formularioAgregar">
+        <div>
+            <button class="btn btn-dark" id="mostrarFomulario" value="Agregar Producto">Agregar Producto</button>
+            <button class="btn btn-dark" id="btnFiltrarProducto">Buscar Producto</button>
+        </div>
+        <div id="formularioAgregar">
             <label for="categoriaProducto">Categoria producto: </label>
             <input type="text" id="categoriaProducto">
 
@@ -23,7 +27,7 @@
             <input type="number" id="precioProducto">
 
             <label for="imagenProducto">Ingrese una imagen</label>
-            <input type="text" placeholder="ingrese ruta imagen" value="./img/cactus.png" disabled>
+            <input type="text" placeholder="ingrese ruta imagen" id="imagenProducto" value="./img/cactus.png" disabled>
             <button class="btn btn-dark" id="btnAgregarProducto">Agregar Producto</button>
         </div>
 <!--         <div class="tarjeta">

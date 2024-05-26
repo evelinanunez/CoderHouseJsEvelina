@@ -3,7 +3,7 @@ Tema elegido, tienda de e-commerce de venta de cactus y articulos
 varios de jardineria.
 */
 
-const productos = [
+let productos = [
     {
         categoriaProducto : "cactus",
         nombreProducto: "Opuntia",
@@ -121,18 +121,35 @@ const productos = [
         console.log("Los datos del producto son los siguientes:  Nombre producto: " + producto.nombre + ", Categoria producto: " + producto.categoria +
         ", Descripción producto: " + producto.descripcion+ ", Precio: " + producto.precio );
     }
-} */
+} */    
 
-const crearCard = (cactus)=>{
+localStorage.setItem("productos",JSON.stringify(productos));
+productos = JSON.parse(localStorage.getItem("productos")) || [];
+
+const agregarProducto = (categoriaProducto,nombreProducto,precioProducto,imagenProducto,)=>{
+    const producto = {
+        categoriaProducto,
+        nombreProducto,
+        imagenProducto,
+        precioProducto
+    }
+    console.log(producto);
+    productos.push(producto);
+    localStorage.setItem("productos", JSON.stringify(productos));
+    return producto;
+}
+
+const crearCard = (producto)=>{
     const app = document.getElementById("app");
     const element = document.createElement("div");
     element.className = "estilosContenedor"
     element.innerHTML = `
                         <div class="card" style="width: 18rem;">
-                            <img src="${cactus.imagenProducto}" class="card-img-top" alt="...">
+                            <img src="${producto.imagenProducto}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h2 class="card-title">${cactus.nombreProducto}</h2>
-                                <h3>Categoria:  ${cactus.categoriaProducto}</h3>
+                                <h2 class="card-title">${producto.nombreProducto}</h2>
+                                <h3>Categoria:  ${producto.categoriaProducto}</h3>
+                                <h3> $ ${producto.precioProducto}</h3>
                                 <button type="button" class="btn btn-dark">Editar</button>
                                 <button type="button" class="btn btn-dark" id="btnAgregarProducto">Eliminar</button>
                             </div>
@@ -141,14 +158,45 @@ const crearCard = (cactus)=>{
     app.append(element)
 }
 const main = () =>{
-    productos.forEach((cactus)=>{
-        crearCard(cactus);
+    productos.forEach((producto)=>{
+        crearCard(producto);
     })
+    /**Se utiliza ClassName para mostrar y ocultar formulario de agregar Producto */
+    const mostrarFormularioAgregarProducto = document.getElementById("mostrarFomulario");
     const formularioAgregar = document.getElementById("formularioAgregar");
-    formularioAgregar.className ="formularioAgregarProducto";
-    const btnAgregarProducto = document.addEventListener("btnAgregarProducto");
-    btnAgregarProducto.addEventListener("click" ,()=>{
+    formularioAgregar.className= "ocultarFormulario";
+    mostrarFormularioAgregarProducto.addEventListener("click", ()=>{
+        if(mostrarFormularioAgregarProducto.value == "Agregar Producto"){
+            formularioAgregar.className= "formularioAgregarProducto";
+            mostrarFormularioAgregarProducto.innerText ="Cerrar Formulario";
+            mostrarFormularioAgregarProducto.value="Cerrar Formulario";
+        } else{
+            formularioAgregar.className="ocultarFormulario";
+            mostrarFormularioAgregarProducto.innerText ="Agregar Producto";
+            mostrarFormularioAgregarProducto.value="Agregar Producto"
+        }
+        
     })
+
+
+    /**Se ejecuta cuando presionar el boton agregar producto del formulario agregar */
+    const botonAgregarProducto = document.getElementById("btnAgregarProducto");
+    botonAgregarProducto.addEventListener("click" ,()=>{
+        const categoriaDelProducto = document.getElementById("categoriaProducto");
+        const nombreDelProducto = document.getElementById("nombreProducto");
+        const precioDelProducto = document.getElementById("precioProducto");
+        const imagenDelProducto = document.getElementById("imagenProducto");
+        const nuevoProducto = agregarProducto(categoriaDelProducto.value,nombreDelProducto.value,precioDelProducto.value, imagenDelProducto.value);
+        formularioAgregar.className ="ocultarFormulario";
+        mostrarFormularioAgregarProducto.innerText ="Agregar Producto";
+        crearCard(nuevoProducto);
+        categoriaDelProducto.value ='';
+        nombreDelProducto.value ='';
+        precioDelProducto.value= 0;
+
+    })
+
+
  /*    let continuar = confirm("Presione Aceptar para Iniciar/continuar o Cancelar para Finalizar la aplicación.");
     while(continuar){
     const accionARealizar = prompt("¡Bienvenido! Seleccione alguna de las siguientes acciones: agregar, editar, eliminar, producto, todosProductos ");
